@@ -4,8 +4,10 @@ public class BinaryHeap {
     /**
      * Binary heaps (Min heap).
      * Operations:
-     *  push(), pop(), peek()
-     *  isEmpty()
+     *  Insert: push() O(logn)
+     *  Deletion: pop() O(logn)
+     *  Return min element: peek() O(1)
+     *  isEmpty(), size()
      *
      */
     private int capacity = 10;
