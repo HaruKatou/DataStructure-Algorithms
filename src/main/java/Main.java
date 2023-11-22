@@ -1,18 +1,17 @@
+import java.util.*;
+
 public class Main {
     public static void main(String[] args) {
-        BinaryHeap heap = new BinaryHeap();
-        System.out.println(heap.isEmpty());
-        heap.push(10);
-        heap.push(20);
-        heap.push(30);
-        System.out.println(heap.peek());
-        heap.push(40); //10,20,30,40
-        heap.pop();         //20,30,40
-        heap.push(60); //20,30,40,60
-        System.out.println(heap.size());
-        System.out.println(heap.pop());
-        heap.pop();
-        heap.pop();
-        System.out.println(heap.peek());
+        List<List<Integer>> edges = new ArrayList<List<Integer>>();
+        edges.add(Arrays.asList(1, 2, 3));
+        edges.add(Arrays.asList(1, 3, 4));
+        edges.add(Arrays.asList(4, 2, 6));
+        edges.add(Arrays.asList(5, 2, 2));
+        edges.add(Arrays.asList(2, 3, 5));
+        edges.add(Arrays.asList(3, 5, 7));
+
+
+        System.out.println(Prim2.prims(5, edges, 1));
     }
 }
+

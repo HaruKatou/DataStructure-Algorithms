@@ -24,7 +24,7 @@ public class BinaryHeap {
     }
 
     private int getParentIndex(int childIndex) {
-        return (childIndex-1) /2;
+        return (childIndex - 1) /2;
     }
 
     private boolean hasLeftChild(int index) {
