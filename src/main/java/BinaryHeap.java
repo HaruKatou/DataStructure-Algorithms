@@ -60,6 +60,7 @@ public class BinaryHeap {
     private void ensureExtraCapacity() {
         if(size == capacity) {
             items = Arrays.copyOf(items, capacity * 2);
+            //(items, capacity*2);
             capacity *= 2;
         }
     }
