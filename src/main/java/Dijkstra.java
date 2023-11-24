@@ -1,10 +1,7 @@
 import java.util.*;
-public class Prim {
-    public static int prims(int n, List<List<Integer>> edges, int start) {
+public class Dijkstra {
+    public static int shortestReach(int n, List<List<Integer>> edges, int s) {
         int res = 0;
-        start--;
-
-
         ArrayList<int[]>[] adj = new ArrayList[edges.size()]; // Initialize an arraylist of int[]
 
         for (int i = 0; i < edges.size(); i++) {
@@ -26,9 +23,9 @@ public class Prim {
 
         PriorityQueue<int[]> min_heap = new PriorityQueue<>((a, b) -> Integer.compare(a[0], b[0]));
 
-        min_heap.add(new int[]{0, start});
+        min_heap.add(new int[]{0, s});
 
-        while (!min_heap.isEmpty()) {
+        while (!min_heap.isEmpty() && !visited[n - 1]) {
             int[] top = min_heap.poll();
             int weight = top[0];
             int node = top[1];
@@ -47,20 +44,24 @@ public class Prim {
                 }
             }
         }
-
         return res;
     }
 
     public static void main(String[] args) {
         List<List<Integer>> edges = new ArrayList<List<Integer>>();
-        edges.add(Arrays.asList(1, 2, 5));
-        edges.add(Arrays.asList(1, 3, 3));
-        edges.add(Arrays.asList(4, 1, 6));
-        edges.add(Arrays.asList(2, 4, 7));
-        edges.add(Arrays.asList(3, 2, 4));
-        edges.add(Arrays.asList(3, 4, 5));
 
+        int gNodes;
+        int edgeNum;
 
-        System.out.println(Prim.prims(4, edges, 2));
+        Scanner scan = new Scanner(System.in);
+        gNodes = scan.nextInt();
+        edgeNum = scan.nextInt();
+        for (int i = 0; i < edgeNum; i++) {
+            List<Integer> tmp = new ArrayList<Integer>();
+            tmp.add(scan.nextInt());
+            tmp.add(scan.nextInt());
+            tmp.add(scan.nextInt());
+            edges.add(tmp);
+        }
     }
 }
