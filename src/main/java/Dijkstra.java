@@ -1,17 +1,20 @@
 import java.util.*;
 public class Dijkstra {
-    public static int shortestReach(int n, List<List<Integer>> edges, int s) {
-        int res = 0;
-        ArrayList<int[]>[] adj = new ArrayList[edges.size()]; // Initialize an arraylist of int[]
+    public static List<Integer> shortestReach(int n, List<List<Integer>> edges, int start) {
+        List<Integer> distances = new ArrayList<>(Collections.nCopies(n, Integer.MAX_VALUE));
+        start--;
+        distances.set(start, 0);
 
-        for (int i = 0; i < edges.size(); i++) {
+        ArrayList<int[]>[] adj = new ArrayList[n];
+
+        for (int i = 0; i < n; i++) {
             adj[i] = new ArrayList<>();
         }
 
-        for (int i = 0; i < edges.size(); i++) {
-            int u = edges.get(i).get(0);
-            int v = edges.get(i).get(1);
-            int weight = edges.get(i).get(2);
+        for (List<Integer> edge : edges) {
+            int u = edge.get(0);
+            int v = edge.get(1);
+            int weight = edge.get(2);
             u--;
             v--;
 
@@ -19,49 +22,59 @@ public class Dijkstra {
             adj[v].add(new int[]{weight, u});
         }
 
-        boolean[] visited = new boolean[n];
+        PriorityQueue<int[]> minHeap = new PriorityQueue<>((a, b) -> Integer.compare(a[0], b[0]));
+        minHeap.add(new int[]{0, start});
 
-        PriorityQueue<int[]> min_heap = new PriorityQueue<>((a, b) -> Integer.compare(a[0], b[0]));
-
-        min_heap.add(new int[]{0, s});
-
-        while (!min_heap.isEmpty() && !visited[n - 1]) {
-            int[] top = min_heap.poll();
-            int weight = top[0];
+        while (!minHeap.isEmpty()) {
+            int[] top = minHeap.poll();
+            int dist = top[0];
             int node = top[1];
 
-            if (visited[node])
+            if (dist > distances.get(node)) {
                 continue;
+            }
 
-            visited[node] = true;
-            res += weight;
+            for (int[] neighbor : adj[node]) {
+                int newDist = dist + neighbor[0];
 
-            for (int[] pair : adj[node]) {
-                int neighbor = pair[1];
-                int cur_weight = pair[0];
-                if (!visited[neighbor]) {
-                    min_heap.add(new int[]{cur_weight, neighbor});
+                if (newDist < distances.get(neighbor[1])) {
+                    distances.set(neighbor[1], newDist);
+                    minHeap.add(new int[]{newDist, neighbor[1]});
                 }
             }
         }
-        return res;
+
+        for (int i = 0; i < distances.size(); i++) {
+            if (distances.get(i) == Integer.MAX_VALUE)
+                distances.set(i, -1);
+        }
+        return distances;
     }
 
     public static void main(String[] args) {
-        List<List<Integer>> edges = new ArrayList<List<Integer>>();
-
-        int gNodes;
-        int edgeNum;
+        List<List<Integer>> edges = new ArrayList<>();
 
         Scanner scan = new Scanner(System.in);
-        gNodes = scan.nextInt();
-        edgeNum = scan.nextInt();
-        for (int i = 0; i < edgeNum; i++) {
-            List<Integer> tmp = new ArrayList<Integer>();
-            tmp.add(scan.nextInt());
-            tmp.add(scan.nextInt());
-            tmp.add(scan.nextInt());
-            edges.add(tmp);
+
+        int cases = scan.nextInt();
+
+        int n = scan.nextInt();
+        int edge = scan.nextInt();
+
+        for (int k = 0; k < cases; k++) {
+            for (int i = 0; i < edge; i++) {
+                edges.add(Arrays.asList(scan.nextInt(), scan.nextInt(), scan.nextInt()));
+            }
+
+            int startNode = scan.nextInt();
+
+            List<Integer> distances = shortestReach(n, edges, startNode);
+
+            for (int i = 0; i < n; i++) {
+                if (distances.get(i) == 0)
+                    continue;
+                System.out.print(distances.get(i) + " ");
+            }
         }
     }
 }
