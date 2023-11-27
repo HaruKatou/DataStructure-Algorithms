@@ -53,18 +53,22 @@ public class Dijkstra {
 
     public static void main(String[] args) {
         List<List<Integer>> edges = new ArrayList<>();
+        HashSet<List<Integer>> set = new HashSet<>();
 
         Scanner scan = new Scanner(System.in);
 
         int cases = scan.nextInt();
 
-        int n = scan.nextInt();
-        int edge = scan.nextInt();
 
         for (int k = 0; k < cases; k++) {
+            int n = scan.nextInt();
+            int edge = scan.nextInt();
+
             for (int i = 0; i < edge; i++) {
-                edges.add(Arrays.asList(scan.nextInt(), scan.nextInt(), scan.nextInt()));
+                set.add(Arrays.asList(scan.nextInt(), scan.nextInt(), scan.nextInt()));
             }
+
+            edges.addAll(set);
 
             int startNode = scan.nextInt();
 
@@ -75,6 +79,7 @@ public class Dijkstra {
                     continue;
                 System.out.print(distances.get(i) + " ");
             }
+            System.out.println();
         }
     }
 }
