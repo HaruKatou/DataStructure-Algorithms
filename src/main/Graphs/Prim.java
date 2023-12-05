@@ -1,5 +1,7 @@
 import java.util.*;
 public class Prim {
+
+    //Time Complexity: O(E*logE).
     public static int prims(int n, List<List<Integer>> edges, int start) {
         int res = 0;
         start--;

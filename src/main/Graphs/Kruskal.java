@@ -1,11 +1,14 @@
 import java.util.*;
 public class Kruskal {
+
+    //Time Complexity: O(E*logV) - edges already sorted using minHeap
     public static int kruskals(int gNodes, List<Integer> gFrom, List<Integer> gTo, List<Integer> gWeight) {
         int res = 0;
 
         ArrayList<int[]> resList = new ArrayList<int[]>();
 
         ArrayList<int[]> adj = new ArrayList<int[]>(); // Initialize an arraylist of int[]
+        // Could use ArrayList<ArrayList<int[]>>, no difference other than accessing through getter.
 
 
         for (int i = 0; i < gWeight.size(); i++) {

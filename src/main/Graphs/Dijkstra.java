@@ -1,5 +1,7 @@
 import java.util.*;
 public class Dijkstra {
+
+    //Time Complexity: O(E*logV)
     public static List<Integer> shortestReach(int n, List<List<Integer>> edges, int start) {
         List<Integer> distances = new ArrayList<>(Collections.nCopies(n, Integer.MAX_VALUE));
         start--;
