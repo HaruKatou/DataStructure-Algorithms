@@ -11,9 +11,9 @@ public class SelectionSort {
     // Space Complexity: O(1)
     // *Unstable*
     public static void selectionSort(int[] array) {
-        for(int i = 0; i < array.length-1; i++) {
+        for(int i = 0; i < array.length - 1; i++) {
             int min_idx = i;
-            for(int j = i+1; j < array.length; j++) {
+            for(int j = i + 1; j < array.length; j++) {
                 if(array[j] < array[min_idx])
                     min_idx = j;
             }

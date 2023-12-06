@@ -2,7 +2,11 @@ public class BubbleSort {
     //Bubble Sort: về cơ bản, ta sẽ cố gắng sắp xếp các phần tử từ cuối lên đầu
     //              (tìm phần tử lớn nhất đẩy xuống cuối).
     //              (khác với Selection sort, ta xếp các phần tử từ đầu đến cuối)
-    //Time complexity: O(n^2)
+
+    //Time complexity:
+    //                 Best: O(n)
+    //                 Average: O(n^2)
+    //                 Worst: O(n^2)
     //*Stable*
 
     public static void bubbleSort(int[] array) {

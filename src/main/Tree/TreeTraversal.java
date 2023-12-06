@@ -19,7 +19,7 @@ public class TreeTraversal {
             return;
 
 
-        Stack<Node> s = new Stack<Node>();
+        Stack<TreeNode> s = new Stack<>();
         TreeNode curr = root;
 
         // Traverse the tree
