@@ -52,8 +52,8 @@ public class TreeTraversal {
             return;
 
         System.out.print(node.value + " ");
-        printInOrder(node.left);
-        printInOrder(node.right);
+        printPreOrder(node.left);
+        printPreOrder(node.right);
     }
 
     // Postorder traversal: trái, phải, giữa
@@ -61,8 +61,28 @@ public class TreeTraversal {
         if (node == null)
             return;
 
-        printInOrder(node.left);
-        printInOrder(node.right);
+        printPostOrder(node.left);
+        printPostOrder(node.right);
         System.out.print(node.value + " ");
+    }
+
+    public static void main(String[] args) {
+        BinaryTree tree = new BinaryTree();
+        TreeTraversal  traversal = new TreeTraversal();
+
+        // Thêm các khóa vào cây
+        tree.root = new TreeNode(99);
+        tree.root.left = new TreeNode(63);
+        tree.root.right = new TreeNode(98);
+        tree.root.left.left = new TreeNode(60);
+        tree.root.left.right = new TreeNode(62);
+        tree.root.right.left = new TreeNode(90);
+        tree.root.right.right = new TreeNode(59);
+        tree.root.left.left.left = new TreeNode(2);
+        tree.root.left.left.right = new TreeNode(20);
+        tree.root.left.right.right = new TreeNode(61);
+        tree.root.left.right.left = new TreeNode(30);
+
+        traversal.printPreOrder(tree.root);
     }
 }

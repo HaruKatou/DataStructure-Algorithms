@@ -16,6 +16,41 @@ public class BinaryTree {
         printInOrderDecreasing(node.left);
     }
 
+    public TreeNode searchBST(TreeNode root, int val) {
+        if (root == null)
+            return null;
+        if (root.value == val)
+            return root;
+        if (val < root.value)
+            return searchBST(root.left, val);
+        return searchBST(root.right, val);
+    }
+
+    public TreeNode insertIntoBST(TreeNode root, int val) {
+        if (root == null) {
+            return new TreeNode(val);
+        }
+        TreeNode cur = root;
+        while (true) {
+            if (val > cur.value) {
+                if (cur.right != null) {
+                    cur = cur.right;
+                } else {
+                    cur.right = new TreeNode(val);
+                    break;
+                }
+            } else {
+                if (cur.left != null) {
+                    cur = cur.left;
+                } else {
+                    cur.left = new TreeNode(val);
+                    break;
+                }
+            }
+        }
+        return root;
+    }
+
     public static void main(String[] args) {
         BinaryTree tree = new BinaryTree();
 
