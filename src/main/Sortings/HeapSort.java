@@ -4,7 +4,7 @@ public class HeapSort {
     /**
      * HeapSort = Using a max heap
      */
-
+    // *Unstable*
     public static void heapSort(int arr[]) {
         int n = arr.length;
 

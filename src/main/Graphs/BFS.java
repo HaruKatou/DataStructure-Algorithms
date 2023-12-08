@@ -42,8 +42,47 @@ public class BFS {
         return res;
     }
 
+    public static int shortestPathBinaryMatrix(int[][] grid) {
+        int[][] direction = new int[][]{{-1, -1}, {-1, 1}, {1, -1}, {1, 1},
+                                        {-1, 0}, {1, 0}, {0 ,1}, {0, -1}};
+
+        int row = grid.length;
+        int col = grid[0].length;
+
+        if (grid[0][0] == 1)
+            return -1;
+
+        boolean[][] visited = new boolean[row][col];
+        Queue<int[]> q = new LinkedList<>();
+        q.add(new int[]{0, 0});
+        visited[0][0] = true;
+
+        int res = 0;
+        while (!q.isEmpty()) {
+            int size = q.size();
+            for (int i = 0; i < size; i++) {
+                int[] top = q.poll();
+                if (top[0] == row - 1 && top[1] == col - 1) {
+                    return res + 1;
+                }
+                for (int j = 0; j < 8; j++) {
+                    int newX = top[0] + direction[j][0];
+                    int newY = top[1] + direction[j][1];
+
+                    if (newX < 0 || newX >= row || newY < 0 || newY >= col
+                            || visited[newX][newY] || grid[newX][newY] == 1)
+                        continue;
+                    q.add(new int[]{newX, newY});
+                    visited[newX][newY] = true;
+                }
+            }
+            res++;
+        }
+        return -1;
+    }
+
     public static void main(String[] args) {
-        Scanner scan = new Scanner(System.in);
+        /*Scanner scan = new Scanner(System.in);
 
         int cases = scan.nextInt();
 
@@ -68,6 +107,8 @@ public class BFS {
                 System.out.print(distances.get(i) + " ");
             }
             System.out.println();
-        }
+        }*/
+        int[][] grid = new int[][]{{0, 0, 0},{1,0,0}, {1, 1, 0}};
+        System.out.print(shortestPathBinaryMatrix(grid));
     }
 }

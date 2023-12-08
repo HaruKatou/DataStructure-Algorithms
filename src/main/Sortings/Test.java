@@ -4,10 +4,10 @@ public class Test {
         int[] array2 = {1, 2, 4, 3};
 
         //MergeSort.mergeSort(array);
-        //QuickSort.quickSort(array, 0, array.length-1);
+        QuickSort.quickSort(array, 0, array.length-1);
         //SelectionSort.selectionSort(array);
         //InsertionSort.insertionSort(array);
-        BubbleSort.flaggedbubbleSort(array);
+        //BubbleSort.flaggedbubbleSort(array);
 
         for(int i : array) {
             System.out.print(i + " ");
