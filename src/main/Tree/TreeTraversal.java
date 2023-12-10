@@ -1,4 +1,6 @@
-import java.util.Stack;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.*;
 
 public class TreeTraversal {
 
@@ -66,6 +68,20 @@ public class TreeTraversal {
         System.out.print(node.value + " ");
     }
 
+    void printLevelOrder(TreeNode node) {
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(node);
+
+        while (!queue.isEmpty()) {
+            TreeNode top = queue.poll();
+            if (top == null)
+                return;
+            System.out.print(top.value + " ");
+            queue.add(top.left);
+            queue.add(top.right);
+        }
+    }
+
     public static void main(String[] args) {
         BinaryTree tree = new BinaryTree();
         TreeTraversal  traversal = new TreeTraversal();
@@ -83,6 +99,6 @@ public class TreeTraversal {
         tree.root.left.right.right = new TreeNode(61);
         tree.root.left.right.left = new TreeNode(30);
 
-        traversal.printPreOrder(tree.root);
+        traversal.printLevelOrder(tree.root);
     }
 }

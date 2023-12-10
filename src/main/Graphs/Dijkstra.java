@@ -53,6 +53,40 @@ public class Dijkstra {
         return distances;
     }
 
+    //geeks for geeks version: for adj as ArrayList not int[
+    static int[] dijkstra(int V, ArrayList<ArrayList<ArrayList<Integer>>> adj, int S)
+    {
+        // Write your code here
+        int[] distances = new int[V];
+        for (int i = 0; i < V; i++)
+            distances[i] = Integer.MAX_VALUE;
+        distances[S] = 0;
+
+        PriorityQueue<ArrayList<Integer>> pq =
+                new PriorityQueue<>(Comparator.comparingInt(a -> a.get(0)));
+        pq.add(new ArrayList<>(Arrays.asList(0, S)));
+
+        while (!pq.isEmpty()) {
+            ArrayList<Integer> top = pq.poll();
+            int node = top.get(1);
+            int w = top.get(0);
+
+            if (w > distances[node])
+                continue;
+
+            for (ArrayList<Integer> neighbor : adj.get(node)) {
+                int new_dist = w + neighbor.get(1);
+                int new_node = neighbor.get(0);
+
+                if (new_dist < distances[new_node]) {
+                    distances[new_node] = new_dist;
+                    pq.add(new ArrayList<>(Arrays.asList(new_dist, new_node)));
+                }
+            }
+        }
+        return distances;
+    }
+
     public static void main(String[] args) {
         List<List<Integer>> edges = new ArrayList<>();
         HashSet<List<Integer>> set = new HashSet<>();

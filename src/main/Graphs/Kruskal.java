@@ -21,7 +21,7 @@ public class Kruskal {
             adj.add(new int[]{weight, v, u});
         }
 
-        PriorityQueue<int[]> min_heap = new PriorityQueue<>((a, b) -> Integer.compare(a[0], b[0]));
+        PriorityQueue<int[]> min_heap = new PriorityQueue<>((a,b) -> Integer.compare(a[0], b[0]));
 
         for (int[] edge : adj) {
             min_heap.add(edge);

@@ -7,10 +7,10 @@ public class Prim {
         start--;
 
 
-        ArrayList<int[]>[] adj = new ArrayList[edges.size()]; // Initialize an arraylist of int[]
+        ArrayList<ArrayList<int[]>> adj = new ArrayList<>(); // Initialize an arraylist of int[]
 
         for (int i = 0; i < edges.size(); i++) {
-            adj[i] = new ArrayList<>();
+            adj.add(new ArrayList<>());
         }
 
         for (int i = 0; i < edges.size(); i++) {
@@ -20,8 +20,8 @@ public class Prim {
             u--;
             v--;
 
-            adj[u].add(new int[]{weight, v});
-            adj[v].add(new int[]{weight, u});
+            adj.get(u).add(new int[]{weight, v});
+            adj.get(v).add(new int[]{weight, u});
         }
 
         boolean[] visited = new boolean[n];
@@ -41,7 +41,7 @@ public class Prim {
             visited[node] = true;
             res += weight;
 
-            for (int[] pair : adj[node]) {
+            for (int[] pair : adj.get(node)) {
                 int neighbor = pair[1];
                 int cur_weight = pair[0];
                 if (!visited[neighbor]) {
