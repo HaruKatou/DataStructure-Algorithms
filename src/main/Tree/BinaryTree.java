@@ -30,23 +30,10 @@ public class BinaryTree {
         if (root == null) {
             return new TreeNode(val);
         }
-        TreeNode cur = root;
-        while (true) {
-            if (val > cur.value) {
-                if (cur.right != null) {
-                    cur = cur.right;
-                } else {
-                    cur.right = new TreeNode(val);
-                    break;
-                }
-            } else {
-                if (cur.left != null) {
-                    cur = cur.left;
-                } else {
-                    cur.left = new TreeNode(val);
-                    break;
-                }
-            }
+        if (val < root.value) {
+            TreeNode left = insertIntoBST(root.left, val);
+        } else {
+            TreeNode right = insertIntoBST(root.right, val);
         }
         return root;
     }
@@ -66,8 +53,8 @@ public class BinaryTree {
             TreeNode rightMin = root.right;
             while (rightMin.left != null)
                 rightMin = rightMin.left;
-            rightMin.left = root.left;
-            return root.right;
+            root.value = rightMin.value;
+            root.right = deleteNode(root.right, root.value);
         }
         return root;
     }
