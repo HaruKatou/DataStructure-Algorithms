@@ -58,8 +58,7 @@ public class Dijkstra {
     {
         // Write your code here
         int[] distances = new int[V];
-        for (int i = 0; i < V; i++)
-            distances[i] = Integer.MAX_VALUE;
+        Arrays.fill(distances, Integer.MAX_VALUE);
         distances[S] = 0;
 
         PriorityQueue<ArrayList<Integer>> pq =

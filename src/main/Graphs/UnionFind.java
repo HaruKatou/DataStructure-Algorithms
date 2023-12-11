@@ -14,6 +14,11 @@ public class UnionFind {
             return find(parent[x]);
         }
         return x;
+
+        /*while (parent[x] != x) {
+            x = parent[x];
+        }
+        return x;*/
     }
 
     public void union(int x, int y) {
