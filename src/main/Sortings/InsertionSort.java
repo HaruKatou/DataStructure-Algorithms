@@ -5,8 +5,8 @@ public class InsertionSort {
     //                For every iteration, the algorithm picks an element on the unsorted sublist
     //                and inserts it at the right place in the sorted sublist.
 
-    // Time Complexity: Best case O(n^2)
-    //                  Average case O(n)
+    // Time Complexity: Best case O(n)
+    //                  Average case O(n^2)
     //                  Worst case O(n^2)
 
     // Space Complexity = O(1)

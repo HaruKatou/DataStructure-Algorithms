@@ -4,6 +4,8 @@ public class HeapSort {
     /**
      * HeapSort = Using a max heap
      */
+
+    // Time Complexity: O(logN) any cases.
     // *Unstable*
     public static void heapSort(int arr[]) {
         int n = arr.length;

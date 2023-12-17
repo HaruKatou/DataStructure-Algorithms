@@ -62,7 +62,7 @@ public class Dijkstra {
         distances[S] = 0;
 
         PriorityQueue<ArrayList<Integer>> pq =
-                new PriorityQueue<>(Comparator.comparingInt(a -> a.get(0)));
+                new PriorityQueue<>((a,b) -> Integer.compare(a.get(0), b.get(0)));
         pq.add(new ArrayList<>(Arrays.asList(0, S)));
 
         while (!pq.isEmpty()) {

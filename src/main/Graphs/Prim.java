@@ -1,7 +1,13 @@
 import java.util.*;
+
+class EdgeComparator implements Comparator<int[]> {
+    public int compare(int[] a, int[] b) {
+        return Integer.compare(a[0], b[0]);
+    }
+}
 public class Prim {
 
-    //Time Complexity: O(E*logE).
+    //Time Complexity: O(E*logV).
     public static int prims(int n, List<List<Integer>> edges, int start) {
         int res = 0;
         start--;
@@ -26,7 +32,7 @@ public class Prim {
 
         boolean[] visited = new boolean[n];
 
-        PriorityQueue<int[]> min_heap = new PriorityQueue<>((a, b) -> Integer.compare(a[0], b[0]));
+        PriorityQueue<int[]> min_heap = new PriorityQueue<>(new EdgeComparator());
 
         min_heap.add(new int[]{0, start});
 
